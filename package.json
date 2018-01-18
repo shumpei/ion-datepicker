@@ -1,5 +1,5 @@
 {
-  "name": "ion-datepicker",
+  "name": "ion-datepicker-fixed-aot",
   "version": "2.7.0",
   "description": "A date picker for ionic",
   "main": "index.js",
