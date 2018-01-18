@@ -15,7 +15,7 @@ import { DateService } from '../services/datepicker.service';
         <div class="date-header">
             <div class="row">
                 <div (tap)="setView(views.Month, getTempMonth(), months.length, yearScroll)" class="col datepicker-month">
-                    {{limitTo(getTempMonth(),3)}}
+                    {{limitTo(getTempMonthName(),3)}}
                 </div>
             </div>
             <div class="row">
@@ -38,7 +38,7 @@ import { DateService } from '../services/datepicker.service';
                 ion-button=""
                 class="disable-hover button button-ios button-default button-default-ios">
                 <span class="button-inner">
-                    <ion-icon name="arrow-back" role="img" class="icon icon-ios ion-ios-arrow-back" aria-label="arrow-back" ng-reflect-name="arrow-back"></ion-icon></span><div class="button-effect"></div></button>            {{getTempMonth()}} {{getTempYear()}}
+                    <ion-icon name="arrow-back" role="img" class="icon icon-ios ion-ios-arrow-back" aria-label="arrow-back" ng-reflect-name="arrow-back"></ion-icon></span><div class="button-effect"></div></button>            {{getTempMonthName()}} {{getTempYear()}}
             <button (tap)="nextMonth()"
                 ion-button=""
                 class="disable-hover button button-ios button-default button-default-ios">
@@ -78,7 +78,7 @@ import { DateService } from '../services/datepicker.service';
     </div>
         <div [hidden]="view !== views.Month" #monthScroll class="datepicker-rows">
         <ng-container *ngFor="let month of months;let i = index">
-            <div  *ngIf="testMonth(i)  && view === views.Month" (tap)="setSelectedMonth(i)" [class.active]="getTempMonth() === month" [class.selected]="getSelectedMonth() === month"   class="row">
+            <div  *ngIf="testMonth(i)  && view === views.Month" (tap)="setSelectedMonth(i)" [class.active]="getTempMonthName() === month" [class.selected]="getSelectedMonth() === month"   class="row">
                 {{month}}
             </div>
         </ng-container>
@@ -91,11 +91,11 @@ import { DateService } from '../services/datepicker.service';
         </ng-container>
     </div>
     <div class="datepicker-footer">
-        <button (tap)="onCancel($event)"
+        <button (tap)="onCancel()"
             ion-button=""
             class="button button-clear button-small col-offset-33 disable-hover button button-ios button-default button-default-ios">
             <span class="button-inner">{{config.cancelText || 'Cancel'}}</span><div class="button-effect"></div></button>
-        <button (tap)="onDone($event)"
+        <button (tap)="onDone()"
             ion-button=""
             class="button button-clear button-small disable-hover button button-ios button-default button-default-ios">
             <span class="button-inner">{{config.okText || 'OK'}}</span><div class="button-effect"></div></button>
@@ -565,12 +565,22 @@ export class DatePickerComponent {
 
     /**
     * 
+    * @function getTempMonthName - Gets the temporary selected date's name of month
+    * @returns {string} 
+    * @memberof DatePickerComponent
+    */
+    public getTempMonthName(): string {
+        return this.months[this.tempDate.getMonth()];
+    }
+
+    /**
+    * 
     * @function getTempMonth - Gets the temporary selected date's name of month
     * @returns {string} 
     * @memberof DatePickerComponent
     */
-    public getTempMonth(): string {
-        return this.months[this.tempDate.getMonth()];
+    public getTempMonth(): number {
+        return (this.tempDate || this.selectedDate).getMonth();
     }
 
     /**
