@@ -1,12 +1,12 @@
 {
   "name": "ion-datepicker-fixed-aot",
-  "version": "2.7.0",
-  "description": "A date picker for ionic",
+  "version": "2.7.1",
+  "description": "Fixed version for https://github.com/misha130/ion-datepicker",
   "main": "index.js",
-  "author": "Misha Tarnorutksy <misha130@gmail.com>",
+  "author": "Shumpei Shiraishi <shumpei.shiraishi@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/misha130/ion-datepicker"
+    "url": "https://github.com/shumpei/ion-datepicker"
   },
   "keywords": [
     "datepicker-ionic3",
